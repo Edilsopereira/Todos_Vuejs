@@ -11,7 +11,7 @@ const state = {
 }
 const getters = {
     todos:  state => state.todos
-} 
+}
 const mutations = {
     addTodo (state, text) {
         state.todos.push({

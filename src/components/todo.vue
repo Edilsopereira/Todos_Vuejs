@@ -1,10 +1,14 @@
 <template>
   <li class="todo-line">
     <h3>
-      <input type="checkbox" @click="itemCheck(item)">
-      <p class="item-label" v-bind:class="{ 'line-through': checked }">{{ index + 1 }} . {{ todoItem.text  }} </p>
-      <p class="item-status" v-if="todoItem.done">finished</p>
-      <p class="item-delete" @click="deleteClick">Delete</p>
+      <input type="checkbox" @click="itemCheck(item)" />
+      <input type="checkbox" @touchend="itemCheck(item)" />
+
+      <p class="item-label" v-bind:class="{ 'line-through': checked }">
+        {{ index + 1 }} . {{ todoItem.text }}
+      </p>
+      <p class="item-status" v-if="todoItem.done">OK!</p>
+      <p class="item-delete" @click="deleteClick">Deletar</p>
     </h3>
   </li>
 </template>
@@ -13,22 +17,22 @@
 export default {
   props: {
     todoItem: Object,
-    index: Number
+    index: Number,
   },
-  data () {
+  data() {
     return {
-      checked: false
-    }
+      checked: false,
+    };
   },
   methods: {
-    itemCheck () {
-      this.$store.commit('toggleTodo', this.index)
+    itemCheck() {
+      this.$store.commit("toggleTodo", this.index);
     },
-    deleteClick () {
-      this.$store.commit('deleteTodo', this.index)
-    }
-  }
-}
+    deleteClick() {
+      this.$store.commit("deleteTodo", this.index);
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -37,7 +41,7 @@ export default {
 }
 .item-status {
   display: inline;
-  background: red;
+  background: green;
   color: white;
   padding: 0 5px;
   font-size: 12px;
